@@ -3,10 +3,7 @@
 #include <time.h>
 
 #define NUM_COUNT 100
-
-extern int p2open(const char *, FILE *[2]); 
-extern int p2close(FILE *[2]);              
-
+           
 int main() {
     FILE *sort_fp[2]; 
     FILE *fp[2];     
@@ -15,7 +12,7 @@ int main() {
     srand(time(NULL));
 
 
-    if (p2open("/bin/sort -n", sort_fp) == -1) {
+    if (p2open("/usr/bin/sort -n", sort_fp) == -1) {
         perror("Error opening sort for writing");
         return 1;
     }
@@ -32,7 +29,7 @@ int main() {
     }
 
 
-    if (p2open("/bin/sort -n", fp) == -1) { 
+    if (p2open("/usr/bin/sort -n", fp) == -1) { 
         perror("Error opening sort for reading");
         return 1; 
     }
