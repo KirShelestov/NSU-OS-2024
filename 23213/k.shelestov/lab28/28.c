@@ -3,7 +3,10 @@
 #include <time.h>
 
 #define NUM_COUNT 100
-           
+
+extern int p2open(const char *, FILE *[2]); 
+extern int p2close(FILE *[2]);              
+
 int main() {
     FILE *sort_fp[2]; 
     FILE *fp[2];     
