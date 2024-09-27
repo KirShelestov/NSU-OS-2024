@@ -15,7 +15,7 @@ int main() {
     srand(time(NULL));
 
 
-    if (p2open("sort", sort_fp) == -1) {
+    if (p2open("/bin/sort -n", sort_fp) == -1) {
         perror("Error opening sort for writing");
         return 1;
     }
@@ -32,7 +32,7 @@ int main() {
     }
 
 
-    if (p2open("sort", fp) == -1) { 
+    if (p2open("/bin/sort -n", fp) == -1) { 
         perror("Error opening sort for reading");
         return 1; 
     }
