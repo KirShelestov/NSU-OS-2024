@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <libgen.h>
 
 #define NUM_COUNT 100
 
@@ -17,7 +16,7 @@ int main() {
 
 
     if (p2open("sort", sort_fp) == -1) {
-        perror("Error with open sort");
+        perror("Error opening sort for writing");
         return 1;
     }
 
@@ -25,26 +24,37 @@ int main() {
     for (i = 0; i < NUM_COUNT; i++) {
         fprintf(sort_fp[1], "%d\n", rand() % 100); 
     }
-    p2close(sort_fp); 
+    
+
+    if (p2close(sort_fp) == -1) {
+        perror("Error closing sort after writing");
+        return 1;
+    }
 
 
     if (p2open("sort", fp) == -1) { 
-        perror("Error with open sort for reading");
+        perror("Error opening sort for reading");
         return 1; 
     }
 
     char line[10];
     i = 0;
 
+
     while (fgets(line, sizeof(line), fp[0]) != NULL) { 
         printf("%s", line);
+        fflush(stdout);
         if (++i % 10 == 0) {
             printf("\n"); 
         }
     } 
 
 
-    p2close(fp); 
+    if (p2close(fp) == -1) {
+        perror("Error closing sort after reading");
+        return 1;
+    }
+
     return 0;
 }
 
