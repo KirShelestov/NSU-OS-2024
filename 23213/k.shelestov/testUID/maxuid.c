@@ -3,7 +3,7 @@
 #include <sys/param.h>
 
 int main() {
-    long max_uid = sysconf(_MAXUID);
+    long max_uid = sysconf(MAXUID);
 
     if (max_uid == -1) {
         perror("sysconf");
